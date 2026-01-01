@@ -3,5 +3,19 @@
   import App from "./app/App.tsx";
   import "./styles/index.css";
 
-  createRoot(document.getElementById("root")!).render(<App />);
+  const rootElement = document.getElementById("root");
+  if (!rootElement) {
+    throw new Error("Root element not found");
+  }
+
+  try {
+    const root = createRoot(rootElement);
+    root.render(<App />);
+  } catch (error) {
+    console.error("Error rendering app:", error);
+    rootElement.innerHTML = `<div style="padding: 20px; font-family: sans-serif;">
+      <h1>Erro ao carregar a aplicação</h1>
+      <p>${error instanceof Error ? error.message : String(error)}</p>
+    </div>`;
+  }
   
