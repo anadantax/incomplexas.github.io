@@ -61,11 +61,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
             {/* Right Geometric Composition */}
             <ScrollReveal direction="right" delay={0.2}>
               <div className="relative h-[400px] lg:h-[500px]">
-                <div className="absolute top-10 left-10 w-64 h-64 bg-primary/20 rounded-lg rotate-12 transition-all duration-500 hover:rotate-6 hover:scale-105"></div>
-                <div className="absolute top-20 left-20 w-64 h-64 bg-secondary/30 rounded-lg -rotate-6 transition-all duration-500 hover:rotate-0 hover:scale-105"></div>
-                <div className="absolute top-32 left-32 w-48 h-48 bg-accent/40 rounded-lg rotate-3 transition-all duration-500 hover:rotate-12 hover:scale-105"></div>
-                <div className="absolute bottom-10 right-10 w-40 h-40 bg-primary/30 rounded-lg -rotate-12 transition-all duration-500 hover:-rotate-6 hover:scale-105"></div>
-                <div className="absolute bottom-20 right-20 w-32 h-32 bg-secondary/20 rounded-lg rotate-6 transition-all duration-500 hover:rotate-12 hover:scale-105"></div>
+                <div className="absolute top-10 left-10 w-64 h-64 bg-primary/20 rounded-lg animate-float-1"></div>
+                <div className="absolute top-20 left-20 w-64 h-64 bg-secondary/30 rounded-lg animate-float-2"></div>
+                <div className="absolute top-32 left-32 w-48 h-48 bg-accent/40 rounded-lg animate-float-3"></div>
+                <div className="absolute bottom-10 right-10 w-40 h-40 bg-primary/30 rounded-lg animate-float-4"></div>
+                <div className="absolute bottom-20 right-20 w-32 h-32 bg-secondary/20 rounded-lg animate-float-5"></div>
               </div>
             </ScrollReveal>
           </div>
@@ -122,9 +122,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left - Geometric Shapes */}
             <ScrollReveal direction="left" className="relative h-[300px] lg:h-[400px] order-2 lg:order-1">
-              <div className="absolute top-0 left-0 w-56 h-56 bg-secondary/20 rounded-lg transition-all duration-500 hover:scale-105"></div>
-              <div className="absolute top-10 left-10 w-48 h-48 bg-primary/30 rounded-lg transition-all duration-500 hover:scale-105"></div>
-              <div className="absolute bottom-0 right-0 w-40 h-40 bg-accent/40 rounded-lg transition-all duration-500 hover:scale-105"></div>
+              <div className="absolute top-0 left-0 w-56 h-56 bg-secondary/20 rounded-lg animate-float-2"></div>
+              <div className="absolute top-10 left-10 w-48 h-48 bg-primary/30 rounded-lg animate-float-4"></div>
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-accent/40 rounded-lg animate-float-1"></div>
             </ScrollReveal>
 
             {/* Right - Benefits */}

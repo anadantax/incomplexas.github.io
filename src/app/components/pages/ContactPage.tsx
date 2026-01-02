@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, Send, MessageCircle } from 'lucide-react';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -17,8 +17,13 @@ export function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send to a backend
-    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+    
+    // Montar mensagem para WhatsApp
+    const whatsappMessage = `*Nova mensagem do site*%0A%0A*Nome:* ${formData.name}%0A*Email:* ${formData.email}%0A*Telefone:* ${formData.phone || 'Não informado'}%0A*Assunto:* ${formData.subject}%0A%0A*Mensagem:*%0A${formData.message}`;
+    
+    // Abrir WhatsApp com a mensagem
+    window.open(`https://wa.me/5562999375950?text=${whatsappMessage}`, '_blank');
+    
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
 
@@ -31,15 +36,9 @@ export function ContactPage() {
     },
     {
       icon: Phone,
-      title: 'Telefone',
+      title: 'Telefone / WhatsApp',
       value: '(62) 99937-5950',
-      href: 'tel:+5562999375950',
-    },
-    {
-      icon: MapPin,
-      title: 'Localização',
-      value: 'Goiânia, GO - Brasil',
-      href: '#',
+      href: 'https://wa.me/5562999375950',
     },
   ];
 
@@ -123,7 +122,7 @@ export function ContactPage() {
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <label htmlFor="name" className="block mb-2 font-['Montserrat']">
+                      <label htmlFor="name" className="block mb-2 font-['Montserrat'] font-semibold">
                         Nome Completo *
                       </label>
                       <Input
@@ -133,12 +132,12 @@ export function ContactPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Seu nome"
-                        className="w-full transition-all duration-300 focus:scale-[1.01]"
+                        className="w-full transition-all duration-300 border-2 border-muted hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="email" className="block mb-2 font-['Montserrat']">
+                      <label htmlFor="email" className="block mb-2 font-['Montserrat'] font-semibold">
                         Email *
                       </label>
                       <Input
@@ -148,12 +147,12 @@ export function ContactPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="seu@email.com"
-                        className="w-full transition-all duration-300 focus:scale-[1.01]"
+                        className="w-full transition-all duration-300 border-2 border-muted hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="phone" className="block mb-2 font-['Montserrat']">
+                      <label htmlFor="phone" className="block mb-2 font-['Montserrat'] font-semibold">
                         Telefone
                       </label>
                       <Input
@@ -162,12 +161,12 @@ export function ContactPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="(62) 99999-9999"
-                        className="w-full transition-all duration-300 focus:scale-[1.01]"
+                        className="w-full transition-all duration-300 border-2 border-muted hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block mb-2 font-['Montserrat']">
+                      <label htmlFor="subject" className="block mb-2 font-['Montserrat'] font-semibold">
                         Assunto *
                       </label>
                       <Input
@@ -177,12 +176,12 @@ export function ContactPage() {
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         placeholder="Como podemos ajudar?"
-                        className="w-full transition-all duration-300 focus:scale-[1.01]"
+                        className="w-full transition-all duration-300 border-2 border-muted hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block mb-2 font-['Montserrat']">
+                      <label htmlFor="message" className="block mb-2 font-['Montserrat'] font-semibold">
                         Mensagem *
                       </label>
                       <Textarea
@@ -191,16 +190,16 @@ export function ContactPage() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Conte-nos mais sobre sua necessidade..."
-                        className="w-full min-h-[150px] transition-all duration-300 focus:scale-[1.01]"
+                        className="w-full min-h-[150px] transition-all duration-300 border-2 border-muted hover:border-primary/50 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-background"
                       />
                     </div>
 
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-['Montserrat'] transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                      className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-['Montserrat'] transition-all duration-300 hover:scale-105 hover:shadow-xl py-6 text-lg"
                     >
-                      <Send className="w-4 h-4 mr-2" />
-                      Enviar Mensagem
+                      <MessageCircle className="w-5 h-5 mr-2" />
+                      Enviar pelo WhatsApp
                     </Button>
                   </form>
                 </CardContent>
